@@ -1,8 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-import { config } from '../config/env.js';
-
+import User from '../models/Users.js';
+import { config } from '../../config/env.js';
 const SECRET_KEY = config.JWT_SECRET;
 
 
@@ -39,9 +38,9 @@ export const signup = async (req, res)=>{
 
 //   Signin or login
 export const signin = async (req, res) =>{
-
+   
     const{username,email, password} = req.body;
-
+    // console.log(req.body)
     try{
         const user= await User.findOne({ $or:[ {username},{email}]});
         if(!user){

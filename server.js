@@ -1,13 +1,20 @@
 import express from 'express';
-import authRoutes from './routes/authRoutes.js';  // Import the auth routes
+import authRoutes from './src/router/authRoutes.js';  // Import the auth routes
+import connectionBD from './config/db.js';          // Import the DB connection function
 
 const app = express();
-app.use(express.json());  // To parse JSON bodies
+const port = 3000;
 
-app.use('/auth', authRoutes);  // Attach the auth routes to the '/auth' path
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-// More app configuration...
+// Connect to MongoDB
+connectionBD();  // Call the database connection function here
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+// Attach the auth routes to the '/auth' path
+app.use('/auth', authRoutes);
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

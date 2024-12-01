@@ -1,6 +1,6 @@
 import express from "express"
-import { signup, signin, signout } from '../controllers/authController.js'; // import controller functions
-import authenticateToken from '../middlewares/authMiddleware.js'; // import authentication middleware
+import { signup, signin, signout } from '../controllers/authControllers.js'; // import controller functions
+import authenticateToken from '../../middlewares/authMiddleware.js'; // import authentication middleware
 
 const router= express.Router();
 // const SECRET_KEY= config.JWT_SECRET
@@ -15,7 +15,7 @@ router.post('/signout',signout);
 
 // Protected route for admin
 router.get('/admin-only', authenticateToken, (req, res) => {
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'Admin') {
         return res.status(403).json({ message: 'Access denied. Admins only.' });
     }
     res.json({ message: 'This is admin-only page', role: req.user.role });
@@ -23,7 +23,7 @@ router.get('/admin-only', authenticateToken, (req, res) => {
 
 // Protected route for moderator
 router.get('/moderator-only', authenticateToken, (req, res) => {
-    if (req.user.role !== 'moderator') {
+    if (req.user.role !== 'Moderator') {
         return res.status(403).json({ message: 'Access denied. Moderators only.' });
     }
     res.json({ message: 'This is moderator-only page', role: req.user.role });
