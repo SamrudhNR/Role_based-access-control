@@ -13,12 +13,13 @@ Middleware: Custom authentication and authorization middleware.
 
 
 Technologies Used
-Node.js: JavaScript runtime environment.
-JWT: JSON Web Tokens for secure user authentication.
-MongoDB: Database for storing user and role data (Mongoose for ODM).
-Bcryptjs: Password hashing for secure storage.
-Express.js: Web framework for routing.
-Mongoose: ODM for MongoDB.
+
+Node.js: JavaScript runtime environment.                                                                 
+JWT: JSON Web Tokens for secure user authentication.                                                               
+MongoDB: Database for storing user and role data (Mongoose for ODM).                                                      
+Bcryptjs: Password hashing for secure storage.                                                                    
+Express.js: Web framework for routing.                                                                                   
+Mongoose: ODM for MongoDB.                                                                                                   
 
 
 Installation
