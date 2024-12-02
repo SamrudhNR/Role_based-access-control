@@ -11,30 +11,30 @@ Middleware: Custom authentication and authorization middleware.
 
 
 Folder Structure
-RBAC/
-├── config/
-│   ├── db.js
-│   └── env.js
-├── middlewares/
-│   ├── authMiddleware.js
-│   └── permissionMiddleware.js
-├── src/
-│   ├── controllers/
-│   │   └── authControllers.js
-│   ├── models/
-│   │   ├── Role.js
-│   │   └── Users.js
-│   ├── router/
-│   │   └── authRoutes.js
-│   └── services/
-│       └── createRoles.js
-├── tests/
-│   └── auth.test.js
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── README.md
-└── server.js
+    RBAC/
+    ├── config/
+    │   ├── db.js
+    │   └── env.js
+    ├── middlewares/
+    │   ├── authMiddleware.js
+    │   └── permissionMiddleware.js
+    ├── src/
+    │   ├── controllers/
+    │   │   └── authControllers.js
+    │   ├── models/
+    │   │   ├── Role.js
+    │   │   └── Users.js
+    │   ├── router/
+    │   │   └── authRoutes.js
+    │   └── services/
+    │       └── createRoles.js
+    ├── tests/
+    │   └── auth.test.js
+    ├── .gitignore
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    └── server.js
 
 
 Technologies Used
