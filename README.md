@@ -84,7 +84,8 @@ API Endpoints
         }
         }
 
-Role-Based Routes
+Role-Based Routes:
+
     1.Write Data (POST /auth/write-data):
         Protected by Admin role.
         Returns the message: "You have access to write data".
@@ -97,7 +98,8 @@ Role-Based Routes
         Protected by Admin role.
         Returns the message: "You have access to delete data".
 
-Middleware
+Middleware:
+
     1.authMiddleware.js: Verifies the JWT token.
         If the token is valid, it attaches the user information to the request (req.user).
         If the token is invalid or missing, it returns a 401 Unauthorized response.
