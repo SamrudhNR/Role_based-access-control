@@ -1,6 +1,7 @@
 import express from 'express';
 import authRoutes from './src/router/authRoutes.js';  // Import the auth routes
 import connectionBD from './config/db.js';          // Import the DB connection function
+import createRoles from './src/services/createRoles.js';
 
 const app = express();
 const port = 3000;
@@ -10,6 +11,7 @@ app.use(express.json());
 
 // Connect to MongoDB
 connectionBD();  // Call the database connection function here
+createRoles();
 
 // Attach the auth routes to the '/auth' path
 app.use('/auth', authRoutes);

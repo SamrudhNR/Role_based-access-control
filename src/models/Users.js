@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
   role: {
-    type: String,
-    enum: ['Admin', 'User', 'Moderator'],
-    default: 'User'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Role', // Reference the Role model
+    required: true
   },
   createdAt: {
     type: Date,

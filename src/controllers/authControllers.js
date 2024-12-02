@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/Users.js';
+import Role from '../models/Role.js';
 import { config } from '../../config/env.js';
 const SECRET_KEY = config.JWT_SECRET;
 
@@ -12,6 +13,11 @@ export const signup = async (req, res)=>{
     // console.log(req.body)
     const {username,email,password,role}= req.body;
 
+    const foundRole = await Role.findOne({ name: role });
+    if (!foundRole) {
+      return res.status(400).json({ message: 'Role not found' });
+    }
+
     try{
         let user= await User.findOne({ $or: [{username},{email}]});
         if(user){
@@ -20,9 +26,9 @@ export const signup = async (req, res)=>{
 
 
         //set default role as user
-        const userRole= role || 'User';
+        // const userRole= role || 'User';
 
-        user= new User({username,email, role:userRole});
+        user= new User({username,email, role:foundRole._id});
         const salt= await bcrypt.genSalt(10);
         user.password= await bcrypt.hash(password, salt);
         await user.save();
@@ -44,7 +50,7 @@ export const signin = async (req, res) =>{
     try{
         const user= await User.findOne({ $or:[ {username},{email}]});
         if(!user){
-            return res.status(400).json({message:'Invalid credentials'});
+            return res.status(400).json({message:'Invalid credentials'}).populate('role', 'name');
         }
 
         //compare password
@@ -53,16 +59,17 @@ export const signin = async (req, res) =>{
             return res.status(400).json({message:"Invalid credential"});
         }
 
+        const role = await Role.findById(user.role);
         //generate JWT token
         const token= jwt.sign(
-            {userId: user._id, username: user.username, role:user.role},
+            {userId: user._id, username: user.username, role:role.name},
             SECRET_KEY,
             {expiresIn:'1h'}
         );
 
         res.json({
             token,
-            user:{id:user._id, username:user.username, role:user.role}
+            user:{id:user._id, username:user.username, role:role.name}
         });
 
     }catch(error){
