@@ -37,10 +37,11 @@ The server will be running on http://localhost:3000.
 
 API Endpoints
 1. Sign Up
-    Route: /auth/signup
-    Method: POST
-    Description: Registers a new user with a given role (Admin, Moderator, or User).
-    Request Body:
+
+    Route: /auth/signup                                                                                 
+    Method: POST                                                                                                           
+    Description: Registers a new user with a given role (Admin, Moderator, or User).                                          
+    Request Body:                                                                                  
     json
         {
         "username": "adminUser",
@@ -48,11 +49,12 @@ API Endpoints
         "password": "admin123",
         "role": "Admin"
         }
-2. Sign In
-    Route: /auth/signin
-    Method: POST
-    Description: Authenticates a user and returns a JWT token.
-    Request Body:
+2. Sign In                                                                                                                 
+
+    Route: /auth/signin                                                                                                      
+    Method: POST                                                                                                        
+    Description: Authenticates a user and returns a JWT token.                                                             
+    Request Body:                                                              
     json
         {
         "username": "adminUser",
@@ -70,11 +72,12 @@ API Endpoints
         }
         }
 3. Moderator-Only Route
-    Route: /auth/moderator-only
-    Method: GET
-    Description: Accessible only by users with the Moderator role.
-    Authorization: Bearer <jwt_token>
-    Response:
+
+    Route: /auth/moderator-only                                                                           
+    Method: GET                                                                                      
+    Description: Accessible only by users with the Moderator role.                                   
+    Authorization: Bearer <jwt_token>                                                                  
+    Response:                                                        
     json
         {
         "message": "This is moderator-only page",
